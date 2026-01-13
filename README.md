@@ -2,21 +2,20 @@
 
 Proyecto Backend en Node.js para la gestión de una biblioteca.
 
-## 🚀 Guía Rápida para el Profesor
+## Guía
 
-Siga estos pasos exactos para corregir el proyecto.
+### 1. Clonar el repositorio
 
-### 1. Inicialización
-
-Abra la terminal en la carpeta del proyecto y ejecute:
+Abra la terminal donde desee guardar el proyecto y ejecute:
 
 ```bash
-npm install
+git clone https://github.com/Guillegas/ProyectoNodeJs.git
+cd ProyectoNodeJs
 ```
 
 ### 2. Configuración de Base de Datos (MySQL)
 
-El proyecto está configurado para usar los siguientes credenciales por defecto. Puede crear este usuario en su MySQL o ajustar el archivo `src/config/config.js` si prefiere usar `root`.
+El proyecto está configurado para usar los siguientes credenciales.
 
 **Credenciales por defecto:**
 
@@ -25,9 +24,9 @@ El proyecto está configurado para usar los siguientes credenciales por defecto.
 - **Contraseña:** `proyecto_guille`
 - **Host:** `localhost`
 
-#### Opción A: Crear Usuario y Base de Datos (Recomendado)
+#### Crear Usuario y Base de Datos
 
-Ejecute el siguiente script SQL en su workbench o cliente MySQL para dejar todo listo:
+Ejecute el siguiente script SQL en MySQL para crear el usuario y la bd, despues ejecuta el archivo .sql en la terminal de esta base de datos si lo hubiera.
 
 ```sql
 CREATE DATABASE IF NOT EXISTS literatura;
@@ -36,13 +35,10 @@ GRANT ALL PRIVILEGES ON literatura.* TO 'proyecto_guille'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-#### Opción B: Usar sus propias credenciales
-
-Si prefiere no crear un usuario nuevo, edite el archivo `src/config/config.js` y ponga su usuario (ej. `root`) y su contraseña.
-
 ### 3. Ejecutar el Proyecto
 
 ```bash
+npm install
 npm run dev
 ```
 
@@ -50,19 +46,9 @@ El servidor iniciará en **http://localhost:3000**
 
 ---
 
-## 🧪 Cómo Probar los Endpoints (Muy Fácil)
-
-No es necesario usar Postman. He incluido archivos de prueba directa en el proyecto.
+## Endpoints
 
 1.  Vaya a la carpeta `src/request`.
 2.  Abra el archivo `author_api.rest` o `book_api.rest`.
 3.  Verá un pequeño texto que dice **"Send Request"** encima de cada URL.
 4.  Pulse ahí para ejecutar la prueba y ver la respuesta a la derecha.
-
-**Ejemplos incluidos:**
-
-- Listar todos
-- Buscar por ID
-- Crear (POST)
-- Modificar (PUT)
-- Borrar (DELETE)

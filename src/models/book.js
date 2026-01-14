@@ -43,7 +43,7 @@ const Book = sequelize.define('Book', {
     timestamps: false
 });
 
-// Relationships
+// relaciones
 Author.hasMany(Book, { foreignKey: 'id_autor', as: 'books' });
 Book.belongsTo(Author, { foreignKey: 'id_autor', as: 'author' });
 

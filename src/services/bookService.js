@@ -4,8 +4,6 @@ const { Op } = require('sequelize');
 
 class BookService {
   async getAllBooks(page = 1, limit = 10, filters = {}) {
-    // Keep the pagination and filtering logic requested previously
-    // but wrapped in the class method structure.
     const offset = (page - 1) * limit;
     const where = {};
 

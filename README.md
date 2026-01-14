@@ -2,6 +2,10 @@
 
 Proyecto Backend en Node.js para la gestión de una biblioteca.
 
+### Enlace al repositorio de GitHub
+
+https://github.com/Guillegas/ProyectoNodeJs.git
+
 ## Guía
 
 ### 1. Clonar el repositorio

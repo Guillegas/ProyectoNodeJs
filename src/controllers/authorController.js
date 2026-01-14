@@ -69,10 +69,6 @@ class AuthorController {
   async updateAuthor(req, res) {
     const id_autor = req.params.id;
     const author = req.body;
-    // Ensure ID is passed to service if it expects it in the object, or rely on service logic.
-    // The service was updated to use `data` and extract `id_autor` from it?
-    // Wait, in the service update I did: `const { id_autor } = data;`.
-    // So I need to make sure id_autor is in the body or merged.
     author.id_autor = id_autor; 
 
     try {

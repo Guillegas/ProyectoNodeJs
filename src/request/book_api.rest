@@ -7,11 +7,6 @@ GET http://localhost:3000/api/books/1
 ### Filtrar libros por búsqueda
 GET http://localhost:3000/api/books?search=soledad
 
-### Filtrar libros por autor (ejemplo conceptual de uso)
-# Nota: La implementación actual filtra por nombre de autor en el backend si se busca, 
-# pero aquí mostramos cómo se vería una petición normal.
-GET http://localhost:3000/api/books?search=Gabriel
-
 ### Crear Libro
 POST http://localhost:3000/api/books
 Content-Type: application/json
@@ -28,12 +23,12 @@ Content-Type: application/json
 }
 
 ### Actualizar Libro
-PUT http://localhost:3000/api/books/1
+PUT http://localhost:3000/api/books/5
 Content-Type: application/json
 
 {
-    "titulo": "Cien años de soledad (Ed. Especial)",
-    "precio": 25.50
+    "imagen": "https://imagessl8.casadellibro.com/a/l/s5/98/9788401352898.webp",
+    "titulo": "La casa de los espíritus"
 }
 
 ### Borrar Libro

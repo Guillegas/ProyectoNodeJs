@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # Servicio de Base de Datos MySQL
+  db:
+    image: mysql:8.0
+    container_name: literatura_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: literatura
+      MYSQL_USER: proyecto_guille
+      MYSQL_PASSWORD: proyecto_guille
+    ports:
+      - "3306:3306"
+      - "8080:8080"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./src/sql:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "proyecto_guille", "-pproyecto_guille"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # phpMyAdmin para gestión de base de datos
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: proyecto_guille
+      PMA_PASSWORD: proyecto_guille
+      MYSQL_ROOT_PASSWORD: root_password
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  # Servicio de la aplicación Node.js
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nodejs_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DB_HOST: db
+      DB_USER: proyecto_guille
+      DB_PASSWORD: proyecto_guille
+      DB_NAME: literatura
+      DB_PORT: 3306
+      SECRET_KEY: mi_clave_secreta_docker
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    command: npm start
+
+# Volúmenes persistentes
+volumes:
+  mysql_data:
+    driver: local
+
+# Red personalizada
+networks:
+  app-network:
+    driver: bridge
